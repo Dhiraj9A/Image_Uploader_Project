@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	<title>Img Uploader</title>
+</head>
+<body>
+	<div class="container border border-secondary">
+		<div class="py-5 text-center bg-secondary text-white">
+			<div class='mb-2'><h1>Image Uploader</h1></div></br>
+			<form action="" method="POST" enctype="multipart/form-data">
+				{% csrf_token %} 
+				{{form}}</br>
+				<input class="btn btn-danger mt-5" type="submit" name="Upload" value="Upload">
+			</form>
+		</div>
+		<div class="row">
+			{% for im in img  reversed %}
+				<div class="col-sm-4">
+					<div class="card m-2">
+						<img src="{{im.image.url}}" alt="your_Uploaded_Image" class="card-img-top" height="200px">
+						<div class="m-2">
+							{{im.title}}</br>
+							{{im.description}}
+							<a href="/delete/{{im.id}}"><button type="submit">Delete</button></a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>
+
+
+
